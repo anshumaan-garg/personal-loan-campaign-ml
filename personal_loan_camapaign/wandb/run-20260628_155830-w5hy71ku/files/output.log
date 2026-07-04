@@ -1,0 +1,2 @@
+[2026-06-28 15:58:31] INFO [train:77] - Fitting ultimate full-scope champion model across complete structural train files.
+[2026-06-28 15:58:31] INFO [train:82] - Successfully generated and serialized binary champion model payload to disk: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/models/decision_tree_model.joblib

@@ -1,0 +1,32 @@
+{
+  "os":  "macOS-26.1-arm64-arm-64bit-Mach-O",
+  "python":  "CPython 3.13.7",
+  "startedAt":  "2026-06-28T10:28:30.708430Z",
+  "program":  "-m src.train",
+  "email":  "anshu.me.maan01@gmail.com",
+  "root":  "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign",
+  "host":  "Anshumaans-MacBook-Air.local",
+  "executable":  "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/venv/bin/python",
+  "cpu_count":  10,
+  "cpu_count_logical":  10,
+  "disk":  {
+    "/":  {
+      "total":  "245107195904",
+      "used":  "198302126080"
+    }
+  },
+  "memory":  {
+    "total":  "17179869184"
+  },
+  "apple":  {
+    "name":  "Apple M4",
+    "ecpuCores":  6,
+    "pcpuCores":  4,
+    "gpuCores":  8,
+    "memoryGb":  16,
+    "swapTotalBytes":  "6442450944",
+    "ramTotalBytes":  "17179869184",
+    "macModel":  "Mac16,12"
+  },
+  "writerId":  "n7c3xfdktf23wzgnjerm2jdpp735qz2m"
+}

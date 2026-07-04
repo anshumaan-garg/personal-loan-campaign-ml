@@ -1,0 +1,173 @@
+[2026-06-28 15:34:49] INFO [preprocess:47] - Initializing Preprocessing Pipeline execution loop.
+[2026-06-28 15:34:49] INFO [preprocess:12] - Loading raw dataset from input location: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/data/raw/Loan_Modelling.csv
+[2026-06-28 15:34:49] INFO [preprocess:15] - Dataset loaded successfully. Original Shape: (5000, 14)
+[2026-06-28 15:34:49] INFO [preprocess:29] - Dropped tracking columns from feature matrix: ['ID', 'ZIPCode']
+[2026-06-28 15:34:49] WARNING [preprocess:35] - Detected 52 rows with negative 'Experience' metrics. Applying absolute corrections.
+[2026-06-28 15:34:49] DEBUG [preprocess:40] - Engineering customer ratio feature: Card_Income_ratio
+[2026-06-28 15:34:49] DEBUG [preprocess:58] - Performing stratified split. Target distribution baseline summary: {0: 0.904, 1: 0.096}
+[2026-06-28 15:34:49] INFO [preprocess:69] - Staged splits successfully on disk. Train Shape: (3750, 13), Test Shape: (1250, 13)
+[2026-06-28 15:54:27] INFO [train:51] - Initializing Master Model Training Workflow Pipeline.
+[2026-06-28 15:54:27] DEBUG [train:53] - Reading training data target path: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/data/processed/train.csv
+[2026-06-28 15:54:27] INFO [train:63] - Created internal hyperparameter validation sets. Internal Train: (3000, 12), Val: (750, 12)
+[2026-06-28 15:54:27] INFO [train:66] - Triggering global Optuna optimization sweep sequence for total of 30 runs.
+[2026-06-28 15:54:27] DEBUG [train:23] - Starting Optuna Trial #0 with configurations: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_split': 21, 'min_samples_leaf': 15, 'class_weight': None}
+[2026-06-28 15:54:27] CRITICAL [train:93] - Model Training Workflow broke down due to unexpected exception: init() got an unexpected keyword argument 'nested'
+Traceback (most recent call last):
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/src/train.py", line 67, in execute_training_workflow
+    study.optimize(
+    ~~~~~~~~~~~~~~^
+        lambda trial: optimization_objective(trial, X_train, y_train, X_val, y_val),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        n_trials=OPTUNA_TRIALS,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/venv/lib/python3.13/site-packages/optuna/study/study.py", line 516, in optimize
+    _optimize(
+    ~~~~~~~~~^
+        study=self,
+        ^^^^^^^^^^^
+    ...<7 lines>...
+        show_progress_bar=show_progress_bar,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/venv/lib/python3.13/site-packages/optuna/study/_optimize.py", line 68, in _optimize
+    _optimize_sequential(
+    ~~~~~~~~~~~~~~~~~~~~^
+        study,
+        ^^^^^^
+    ...<8 lines>...
+        progress_bar=progress_bar,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/venv/lib/python3.13/site-packages/optuna/study/_optimize.py", line 165, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/venv/lib/python3.13/site-packages/optuna/study/_optimize.py", line 263, in _run_trial
+    raise func_err
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/venv/lib/python3.13/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/src/train.py", line 68, in <lambda>
+    lambda trial: optimization_objective(trial, X_train, y_train, X_val, y_val),
+                  ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/src/train.py", line 25, in optimization_objective
+    run = wandb.init(
+        project=WB_PROJECT,
+    ...<3 lines>...
+        leave=False,
+    )
+TypeError: init() got an unexpected keyword argument 'nested'
+[2026-06-28 15:56:37] INFO [train:52] - Initializing Master Model Training Workflow Pipeline.
+[2026-06-28 15:56:37] DEBUG [train:54] - Reading training data target path: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/data/processed/train.csv
+[2026-06-28 15:56:37] INFO [train:64] - Created internal hyperparameter validation sets. Internal Train: (3000, 12), Val: (750, 12)
+[2026-06-28 15:56:37] INFO [train:67] - Triggering global Optuna optimization sweep sequence for total of 30 runs.
+[2026-06-28 15:56:37] DEBUG [train:23] - Starting Optuna Trial #0 with configurations: {'criterion': 'gini', 'max_depth': 8, 'min_samples_split': 13, 'min_samples_leaf': 20, 'class_weight': None}
+[2026-06-28 15:56:40] INFO [train:40] - Trial #0 Finished. Evaluation Validation F1-Score: 0.8455
+[2026-06-28 15:56:42] DEBUG [train:23] - Starting Optuna Trial #1 with configurations: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_split': 24, 'min_samples_leaf': 13, 'class_weight': None}
+[2026-06-28 15:56:44] INFO [train:40] - Trial #1 Finished. Evaluation Validation F1-Score: 0.8034
+[2026-06-28 15:56:45] DEBUG [train:23] - Starting Optuna Trial #2 with configurations: {'criterion': 'gini', 'max_depth': 11, 'min_samples_split': 8, 'min_samples_leaf': 18, 'class_weight': None}
+[2026-06-28 15:56:47] INFO [train:40] - Trial #2 Finished. Evaluation Validation F1-Score: 0.8739
+[2026-06-28 15:56:48] DEBUG [train:23] - Starting Optuna Trial #3 with configurations: {'criterion': 'gini', 'max_depth': 8, 'min_samples_split': 15, 'min_samples_leaf': 13, 'class_weight': None}
+[2026-06-28 15:56:50] INFO [train:40] - Trial #3 Finished. Evaluation Validation F1-Score: 0.8430
+[2026-06-28 15:56:52] DEBUG [train:23] - Starting Optuna Trial #4 with configurations: {'criterion': 'entropy', 'max_depth': 5, 'min_samples_split': 27, 'min_samples_leaf': 9, 'class_weight': 'balanced'}
+[2026-06-28 15:56:54] INFO [train:40] - Trial #4 Finished. Evaluation Validation F1-Score: 0.7660
+[2026-06-28 15:56:55] DEBUG [train:23] - Starting Optuna Trial #5 with configurations: {'criterion': 'gini', 'max_depth': 9, 'min_samples_split': 7, 'min_samples_leaf': 17, 'class_weight': None}
+[2026-06-28 15:56:57] INFO [train:40] - Trial #5 Finished. Evaluation Validation F1-Score: 0.8739
+[2026-06-28 15:56:59] DEBUG [train:23] - Starting Optuna Trial #6 with configurations: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_split': 40, 'min_samples_leaf': 3, 'class_weight': 'balanced'}
+[2026-06-28 15:57:00] INFO [train:40] - Trial #6 Finished. Evaluation Validation F1-Score: 0.7714
+[2026-06-28 15:57:02] DEBUG [train:23] - Starting Optuna Trial #7 with configurations: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_split': 35, 'min_samples_leaf': 8, 'class_weight': 'balanced'}
+[2026-06-28 15:57:04] INFO [train:40] - Trial #7 Finished. Evaluation Validation F1-Score: 0.7714
+[2026-06-28 15:57:06] DEBUG [train:23] - Starting Optuna Trial #8 with configurations: {'criterion': 'entropy', 'max_depth': 15, 'min_samples_split': 30, 'min_samples_leaf': 18, 'class_weight': 'balanced'}
+[2026-06-28 15:57:07] INFO [train:40] - Trial #8 Finished. Evaluation Validation F1-Score: 0.7671
+[2026-06-28 15:57:09] DEBUG [train:23] - Starting Optuna Trial #9 with configurations: {'criterion': 'entropy', 'max_depth': 5, 'min_samples_split': 29, 'min_samples_leaf': 17, 'class_weight': 'balanced'}
+[2026-06-28 15:57:11] INFO [train:40] - Trial #9 Finished. Evaluation Validation F1-Score: 0.7552
+[2026-06-28 15:57:13] DEBUG [train:23] - Starting Optuna Trial #10 with configurations: {'criterion': 'gini', 'max_depth': 15, 'min_samples_split': 17, 'min_samples_leaf': 4, 'class_weight': None}
+[2026-06-28 15:57:15] INFO [train:40] - Trial #10 Finished. Evaluation Validation F1-Score: 0.8475
+[2026-06-28 15:57:16] DEBUG [train:23] - Starting Optuna Trial #11 with configurations: {'criterion': 'gini', 'max_depth': 12, 'min_samples_split': 5, 'min_samples_leaf': 15, 'class_weight': None}
+[2026-06-28 15:57:18] INFO [train:40] - Trial #11 Finished. Evaluation Validation F1-Score: 0.8522
+[2026-06-28 15:57:20] DEBUG [train:23] - Starting Optuna Trial #12 with configurations: {'criterion': 'gini', 'max_depth': 12, 'min_samples_split': 6, 'min_samples_leaf': 20, 'class_weight': None}
+[2026-06-28 15:57:21] INFO [train:40] - Trial #12 Finished. Evaluation Validation F1-Score: 0.8455
+[2026-06-28 15:57:23] DEBUG [train:23] - Starting Optuna Trial #13 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 11, 'min_samples_leaf': 16, 'class_weight': None}
+[2026-06-28 15:57:25] INFO [train:40] - Trial #13 Finished. Evaluation Validation F1-Score: 0.8785
+[2026-06-28 15:57:27] DEBUG [train:23] - Starting Optuna Trial #14 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 11, 'min_samples_leaf': 13, 'class_weight': None}
+[2026-06-28 15:57:29] INFO [train:40] - Trial #14 Finished. Evaluation Validation F1-Score: 0.8785
+[2026-06-28 15:57:30] DEBUG [train:23] - Starting Optuna Trial #15 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 19, 'min_samples_leaf': 11, 'class_weight': None}
+[2026-06-28 15:57:32] INFO [train:40] - Trial #15 Finished. Evaluation Validation F1-Score: 0.8785
+[2026-06-28 15:57:34] DEBUG [train:23] - Starting Optuna Trial #16 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 11, 'min_samples_leaf': 14, 'class_weight': None}
+[2026-06-28 15:57:37] INFO [train:40] - Trial #16 Finished. Evaluation Validation F1-Score: 0.8785
+[2026-06-28 15:57:39] DEBUG [train:23] - Starting Optuna Trial #17 with configurations: {'criterion': 'gini', 'max_depth': 5, 'min_samples_split': 20, 'min_samples_leaf': 7, 'class_weight': None}
+[2026-06-28 15:57:41] INFO [train:40] - Trial #17 Finished. Evaluation Validation F1-Score: 0.8475
+[2026-06-28 15:57:43] DEBUG [train:23] - Starting Optuna Trial #18 with configurations: {'criterion': 'gini', 'max_depth': 6, 'min_samples_split': 11, 'min_samples_leaf': 11, 'class_weight': None}
+[2026-06-28 15:57:44] INFO [train:40] - Trial #18 Finished. Evaluation Validation F1-Score: 0.8430
+[2026-06-28 15:57:46] DEBUG [train:23] - Starting Optuna Trial #19 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 23, 'min_samples_leaf': 11, 'class_weight': None}
+[2026-06-28 15:57:47] INFO [train:40] - Trial #19 Finished. Evaluation Validation F1-Score: 0.8785
+[2026-06-28 15:57:49] DEBUG [train:23] - Starting Optuna Trial #20 with configurations: {'criterion': 'gini', 'max_depth': 6, 'min_samples_split': 10, 'min_samples_leaf': 15, 'class_weight': None}
+[2026-06-28 15:57:52] INFO [train:40] - Trial #20 Finished. Evaluation Validation F1-Score: 0.8522
+[2026-06-28 15:57:53] DEBUG [train:23] - Starting Optuna Trial #21 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 17, 'min_samples_leaf': 11, 'class_weight': None}
+[2026-06-28 15:57:55] INFO [train:40] - Trial #21 Finished. Evaluation Validation F1-Score: 0.8785
+[2026-06-28 15:57:57] DEBUG [train:23] - Starting Optuna Trial #22 with configurations: {'criterion': 'gini', 'max_depth': 4, 'min_samples_split': 19, 'min_samples_leaf': 6, 'class_weight': None}
+[2026-06-28 15:57:59] INFO [train:40] - Trial #22 Finished. Evaluation Validation F1-Score: 0.8522
+[2026-06-28 15:58:00] DEBUG [train:23] - Starting Optuna Trial #23 with configurations: {'criterion': 'gini', 'max_depth': 4, 'min_samples_split': 14, 'min_samples_leaf': 12, 'class_weight': None}
+[2026-06-28 15:58:02] INFO [train:40] - Trial #23 Finished. Evaluation Validation F1-Score: 0.8522
+[2026-06-28 15:58:04] DEBUG [train:23] - Starting Optuna Trial #24 with configurations: {'criterion': 'gini', 'max_depth': 4, 'min_samples_split': 22, 'min_samples_leaf': 9, 'class_weight': None}
+[2026-06-28 15:58:05] INFO [train:40] - Trial #24 Finished. Evaluation Validation F1-Score: 0.8522
+[2026-06-28 15:58:07] DEBUG [train:23] - Starting Optuna Trial #25 with configurations: {'criterion': 'gini', 'max_depth': 6, 'min_samples_split': 15, 'min_samples_leaf': 16, 'class_weight': None}
+[2026-06-28 15:58:09] INFO [train:40] - Trial #25 Finished. Evaluation Validation F1-Score: 0.8522
+[2026-06-28 15:58:12] DEBUG [train:23] - Starting Optuna Trial #26 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 9, 'min_samples_leaf': 10, 'class_weight': 'balanced'}
+[2026-06-28 15:58:14] INFO [train:40] - Trial #26 Finished. Evaluation Validation F1-Score: 0.7037
+[2026-06-28 15:58:17] DEBUG [train:23] - Starting Optuna Trial #27 with configurations: {'criterion': 'gini', 'max_depth': 7, 'min_samples_split': 19, 'min_samples_leaf': 13, 'class_weight': None}
+[2026-06-28 15:58:18] INFO [train:40] - Trial #27 Finished. Evaluation Validation F1-Score: 0.8430
+[2026-06-28 15:58:21] DEBUG [train:23] - Starting Optuna Trial #28 with configurations: {'criterion': 'gini', 'max_depth': 4, 'min_samples_split': 13, 'min_samples_leaf': 15, 'class_weight': None}
+[2026-06-28 15:58:23] INFO [train:40] - Trial #28 Finished. Evaluation Validation F1-Score: 0.8522
+[2026-06-28 15:58:25] DEBUG [train:23] - Starting Optuna Trial #29 with configurations: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 12, 'min_samples_leaf': 19, 'class_weight': None}
+[2026-06-28 15:58:27] INFO [train:40] - Trial #29 Finished. Evaluation Validation F1-Score: 0.8785
+[2026-06-28 15:58:30] INFO [train:73] - Optimization Sweep Finished. Champion Parameters Selected: {'criterion': 'gini', 'max_depth': 3, 'min_samples_split': 11, 'min_samples_leaf': 16, 'class_weight': None}
+[2026-06-28 15:58:31] INFO [train:77] - Fitting ultimate full-scope champion model across complete structural train files.
+[2026-06-28 15:58:31] INFO [train:82] - Successfully generated and serialized binary champion model payload to disk: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/models/decision_tree_model.joblib
+[2026-06-28 15:58:38] INFO [train:91] - W&B artifacts finalized and uploaded to remote repository successfully.
+[2026-06-28 16:00:19] INFO [evaluate:12] - Starting out-of-sample holdout target validation.
+[2026-06-28 16:00:19] DEBUG [evaluate:14] - Reading validation holdout targets from: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/data/processed/test.csv
+[2026-06-28 16:00:19] DEBUG [evaluate:20] - Restoring current champion model state artifact path from: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/models/decision_tree_model.joblib
+[2026-06-28 16:00:19] INFO [evaluate:32] - Evaluation Completed. Out-of-sample Metrics calculated: F1=0.8776, Accuracy=0.9768
+[2026-06-28 16:00:19] DEBUG [evaluate:33] - Confusion Matrix Array Output: TN=1117, FP=13, FN=16, TP=104
+[2026-06-28 16:23:49] INFO [eda:13] - Initializing automated Exploratory Data Analysis (EDA) pipeline...
+[2026-06-28 16:23:49] DEBUG [eda:18] - Ensured target asset directory exists at: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/assets/eda
+[2026-06-28 16:23:49] INFO [eda:23] - Successfully loaded raw data for EDA. Shape: (5000, 14)
+[2026-06-28 16:23:49] INFO [eda:42] - Generating target variable distribution plot...
+[2026-06-28 16:23:50] INFO [eda:59] - Target distribution chart saved to: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/assets/eda/target_distribution.png
+[2026-06-28 16:23:50] INFO [eda:62] - Generating correlation matrix heatmap...
+[2026-06-28 16:23:50] INFO [eda:80] - Correlation heatmap saved to: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/assets/eda/correlation_matrix.png
+[2026-06-28 16:23:50] INFO [eda:82] - Exploratory Data Analysis pipeline executed and compiled cleanly.
+[2026-06-28 16:33:53] INFO [eda:14] - Initializing Comprehensive EDA Pipeline...
+[2026-06-28 16:33:53] DEBUG [eda:19] - Ensuring output target path exists: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/assets/eda
+[2026-06-28 16:33:53] INFO [eda:24] - Raw data successfully ingested for profiling. Base Shape: (5000, 14)
+[2026-06-28 16:33:53] INFO [eda:48] - Generating Univariate profiling metrics...
+[2026-06-28 16:33:54] DEBUG [eda:68] - Plotting univariate summary distribution for: Age
+[2026-06-28 16:33:54] DEBUG [eda:68] - Plotting univariate summary distribution for: Experience
+[2026-06-28 16:33:54] DEBUG [eda:68] - Plotting univariate summary distribution for: Income
+[2026-06-28 16:33:54] DEBUG [eda:68] - Plotting univariate summary distribution for: CCAvg
+[2026-06-28 16:33:54] DEBUG [eda:68] - Plotting univariate summary distribution for: Mortgage
+[2026-06-28 16:33:54] INFO [eda:103] - Generating Bivariate relational profiles against target...
+[2026-06-28 16:33:54] DEBUG [eda:109] - Plotting bivariate relationship: Income vs Personal_Loan
+[2026-06-28 16:33:54] DEBUG [eda:109] - Plotting bivariate relationship: CCAvg vs Personal_Loan
+[2026-06-28 16:33:54] DEBUG [eda:109] - Plotting bivariate relationship: Mortgage vs Personal_Loan
+[2026-06-28 16:33:54] DEBUG [eda:109] - Plotting bivariate relationship: Age vs Personal_Loan
+[2026-06-28 16:33:55] INFO [eda:135] - Compiling overall Feature Correlation Matrix...
+[2026-06-28 16:33:55] INFO [eda:152] - All structural EDA assets compiled successfully. Targets verified inside: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/assets/eda
+[2026-06-28 16:33:55] INFO [eda:169] - Initializing Comprehensive EDA Pipeline...
+[2026-06-28 16:33:55] DEBUG [eda:174] - Ensuring output target path exists: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/assets/eda
+[2026-06-28 16:33:55] INFO [eda:179] - Raw data successfully ingested for profiling. Base Shape: (5000, 14)
+[2026-06-28 16:33:55] INFO [eda:203] - Generating Univariate profiling metrics...
+[2026-06-28 16:33:55] DEBUG [eda:223] - Plotting univariate summary distribution for: Age
+[2026-06-28 16:33:55] DEBUG [eda:223] - Plotting univariate summary distribution for: Experience
+[2026-06-28 16:33:55] DEBUG [eda:223] - Plotting univariate summary distribution for: Income
+[2026-06-28 16:33:55] DEBUG [eda:223] - Plotting univariate summary distribution for: CCAvg
+[2026-06-28 16:33:55] DEBUG [eda:223] - Plotting univariate summary distribution for: Mortgage
+[2026-06-28 16:33:55] INFO [eda:258] - Generating Bivariate relational profiles against target...
+[2026-06-28 16:33:55] DEBUG [eda:264] - Plotting bivariate relationship: Income vs Personal_Loan
+[2026-06-28 16:33:56] DEBUG [eda:264] - Plotting bivariate relationship: CCAvg vs Personal_Loan
+[2026-06-28 16:33:56] DEBUG [eda:264] - Plotting bivariate relationship: Mortgage vs Personal_Loan
+[2026-06-28 16:33:56] DEBUG [eda:264] - Plotting bivariate relationship: Age vs Personal_Loan
+[2026-06-28 16:33:56] INFO [eda:290] - Compiling overall Feature Correlation Matrix...
+[2026-06-28 16:33:56] INFO [eda:307] - All structural EDA assets compiled successfully. Targets verified inside: /Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign/assets/eda

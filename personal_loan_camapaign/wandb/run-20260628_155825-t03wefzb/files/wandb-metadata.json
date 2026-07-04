@@ -1,0 +1,11 @@
+{
+  "os":  "macOS-26.1-arm64-arm-64bit-Mach-O",
+  "python":  "CPython 3.13.7",
+  "startedAt":  "2026-06-28T10:28:25.581756Z",
+  "program":  "-m src.train",
+  "email":  "anshu.me.maan01@gmail.com",
+  "root":  "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/personal_loan_camapaign",
+  "host":  "Anshumaans-MacBook-Air.local",
+  "executable":  "/Users/anshumaan-garg/Documents/Projects/Great Learning/ML_module_2/venv/bin/python",
+  "writerId":  "m1hxeyaj3rqhfrcetir7dj9azgv615gm"
+}
